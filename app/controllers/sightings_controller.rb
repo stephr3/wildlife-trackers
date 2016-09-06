@@ -14,6 +14,27 @@ class SightingsController < ApplicationController
     end
   end
 
+  def edit
+    @sighting = Sighting.find(params[:id])
+    @animal = @sighting.animal
+    render :edit
+  end
+
+  def update
+    @sighting = Sighting.find(params[:id])
+    if @sighting.update(sighting_params)
+      redirect_to animal_path(@sighting.animal)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @sighting = Sighting.find(params[:id])
+    @sighting.destroy
+    redirect_to animal_path(@sighting.animal)
+  end
+
 private
   def sighting_params
     params.require(:sighting).permit(:description, :date, :latitude, :longitude)
