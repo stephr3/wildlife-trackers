@@ -8,9 +8,12 @@ class AnimalsController < ApplicationController
   def show
     @animal = Animal.find(params[:id])
     @sightings = @animal.sightings
-    @sightings = Sighting.search(params[:date1], params[:date2]) unless params[:date1].blank? || params[:date2].blank?
+    no_date = params[:date1].blank? || params[:date2].blank?
+    no_region = params[:region].blank?
+    @sightings = @animal.sightings.searchDate(params[:date1], params[:date2]).searchRegion(params[:region]) unless no_date || no_region
+    @sightings = @animal.sightings.searchDate(params[:date1], params[:date2]) unless no_date if no_region
+    @sightings = @animal.sightings.searchRegion(params[:region]) unless no_region if no_date
     render :show
-
   end
 
   def new

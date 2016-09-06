@@ -6,9 +6,11 @@
     <p>
       <%= date_field_tag :date1, params[:date1] %>
       <%= date_field_tag :date2, params[:date2] %>
+      <%= select_tag(:region, options_for_select([[nil], ['North'], ['South'], ['East'], ['West']])) %>
       <%= submit_tag "Search", :name => nil %>
     </p>
   <% end %>
+
   <ul>
     <% @sightings.each do |sighting| %>
       <li>
