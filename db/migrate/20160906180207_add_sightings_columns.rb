@@ -1,0 +1,6 @@
+class AddSightingsColumns < ActiveRecord::Migration[5.0]
+  def change
+    add_column :sightings, :animal_id, :integer
+    add_column :sightings, :neighborhood, :string
+  end
+end

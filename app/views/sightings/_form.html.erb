@@ -5,6 +5,8 @@
   <%= f.text_field :description %>
   <%= f.label :date %>
   <%= f.date_field :date %>
+  <%= f.label :neighborhood %>
+  <%= f.select(:neighborhood, options_for_select([['North'], ['South'], ['East'], ['West']])) %>
   <%= f.label :latitude %>
   <%= f.text_field :latitude %>
   <%= f.label :longitude %>
