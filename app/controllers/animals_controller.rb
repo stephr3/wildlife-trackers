@@ -1,12 +1,16 @@
 class AnimalsController < ApplicationController
   def index
     @animals = Animal.all
+
     render :index
   end
 
   def show
     @animal = Animal.find(params[:id])
+    @sightings = @animal.sightings
+    @sightings = Sighting.search(params[:date1], params[:date2]) unless params[:date1].blank? || params[:date2].blank?
     render :show
+
   end
 
   def new

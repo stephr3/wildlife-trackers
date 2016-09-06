@@ -2,8 +2,15 @@
 
 <% if @animal.sightings.any? %>
   <h4>Latest <%= @animal.name %> Sightings:</h4>
+  <%= form_tag animal_path, :method => 'get' do %>
+    <p>
+      <%= date_field_tag :date1, params[:date1] %>
+      <%= date_field_tag :date2, params[:date2] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+  <% end %>
   <ul>
-    <% @animal.sightings.each do |sighting| %>
+    <% @sightings.each do |sighting| %>
       <li>
         <%= sighting.date %> |
         <%= sighting.neighborhood %> |
